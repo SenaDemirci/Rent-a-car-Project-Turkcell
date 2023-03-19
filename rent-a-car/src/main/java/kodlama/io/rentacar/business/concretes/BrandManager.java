@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class BrandManager implements BrandService {
-    private BrandRepository repository;
+    private final BrandRepository repository;
 
     public BrandManager(BrandRepository repository) {
         this.repository = repository;
@@ -19,5 +19,25 @@ public class BrandManager implements BrandService {
     public List<Brand> getAll() {
         if (repository.getAll().size() == 0) throw new RuntimeException("Marka bulunamadı");
         return repository.getAll();
+    }
+
+    @Override
+    public Brand getById(int id) {
+        return repository.getById(id);
+    }
+
+    @Override
+    public Brand add(Brand brand) {
+        return repository.add(brand);
+    }
+
+    @Override
+    public Brand update(int id, Brand brand) {
+        return repository.update(id, brand);
+    }
+
+    @Override
+    public void delete(int id) {
+        repository.delete(id);
     }
 }
