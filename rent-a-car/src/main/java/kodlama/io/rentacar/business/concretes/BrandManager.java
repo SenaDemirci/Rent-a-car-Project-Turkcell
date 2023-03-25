@@ -21,7 +21,7 @@ public class BrandManager implements BrandService {
     @Override
     public Brand getById(int id) {
         checkIfBrandExists(id);
-        return repository.findById(id).orElseThrow(); //findById()nin null dönme ihtimali olduğu için hata verir, bu yüzden orElseThrow() veya alt get() çağrılır.
+        return repository.findById(id).orElseThrow(); //findById()nin null dönme ihtimali olduğu için hata verir, bu yüzden orElseThrow() veya get() çağrılır.
         //return repository.findById(id).get(); //id ye göre bul varsa 1 tanesini getir.
         //findById() kullanıyorsan getById() fonk Optional<Brand> döndürmeli veya yukarıdaki yöntemler izelenebilir.
     }
