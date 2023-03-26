@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 //Concrete class
 //Lombok
 @Entity
@@ -20,6 +22,14 @@ public class Brand {
     //@Column(name = "ID")
     private int id; //Primary Key @Id sayesinde
     private String name;
+
+    @OneToMany(mappedBy = "brand") //(1 markanın 1+ modeli olur) //Listeyi mapler(foreach gibi)
+    private List<Model> models; //liste olduğu için one ile başlanır (one-> brand classını temsil eder)
+    //ilişkinin sahibi Brand. Model Brande bağımlı (mappedBy ilişkide sahip olmayan tarafı gösterir)
+
+
+
+
 
     //@NoArgsConstructor
     /*

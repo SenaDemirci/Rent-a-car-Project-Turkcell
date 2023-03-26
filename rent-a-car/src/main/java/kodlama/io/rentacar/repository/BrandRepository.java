@@ -11,7 +11,7 @@ import java.util.List;
 //@Repository
 public interface BrandRepository extends JpaRepository<Brand,Integer> {
     //Custom queries
-
+    //CRUD Operations
 
     //JpaRepository yapınca gerek kalmadı.
     /*
