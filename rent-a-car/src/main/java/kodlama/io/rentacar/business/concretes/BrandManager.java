@@ -2,9 +2,11 @@ package kodlama.io.rentacar.business.concretes;
 
 import kodlama.io.rentacar.business.abstracts.BrandService;
 import kodlama.io.rentacar.business.dto.requests.create.CreateBrandRequest;
+import kodlama.io.rentacar.business.dto.requests.update.UpdateBrandRequest;
 import kodlama.io.rentacar.business.dto.responses.create.CreateBrandResponse;
 import kodlama.io.rentacar.business.dto.responses.get.GetAllBrandsResponse;
 import kodlama.io.rentacar.business.dto.responses.get.GetBrandResponse;
+import kodlama.io.rentacar.business.dto.responses.update.UpdateBrandResponse;
 import kodlama.io.rentacar.entities.Brand;
 import kodlama.io.rentacar.repository.BrandRepository;
 import lombok.AllArgsConstructor;
@@ -41,7 +43,7 @@ public class BrandManager implements BrandService {
 
     @Override
     public GetBrandResponse getById(int id) {
-        checkIfBrandExists(id);
+        checkIfBrandExistsById(id);
         Brand brand = repository.findById(id).orElseThrow();
         GetBrandResponse response = mapper.map(brand, GetBrandResponse.class); //Dönüşmesini istediğim şey brand
         return response;
@@ -71,6 +73,8 @@ public class BrandManager implements BrandService {
 
     @Override
     public CreateBrandResponse add(CreateBrandRequest request) {
+        checkIfBrandExistsByName(request.getName());
+
         Brand brand = mapper.map(request, Brand.class);
         brand.setId(0); //id ye 0 yazmaz, olan id yazınca güncellemesin diye yeni id yi kendi oto oluşturur.
         repository.save(brand);
@@ -95,22 +99,39 @@ public class BrandManager implements BrandService {
 //    }
 
     @Override
+    public UpdateBrandResponse update(int id, UpdateBrandRequest request) {
+        checkIfBrandExistsById(id);
+        Brand brand = mapper.map(request, Brand.class);
+        brand.setId(id);
+        repository.save(brand);
+        UpdateBrandResponse response = mapper.map(brand, UpdateBrandResponse.class);
+        return response; //save() nesneyi yeni oluştururken değiştirmek istenen id atanır.
+    }
+
+    /*
+    @Override
     public Brand update(int id, Brand brand) {
-        checkIfBrandExists(id);
+        checkIfBrandExistsById(id);
         brand.setId(id);
         return repository.save(brand); //save() nesneyi yeni oluştururken değiştirmek istenen id atanır.
     }
+     */
 
     @Override
     public void delete(int id) {
-        checkIfBrandExists(id);
+        checkIfBrandExistsById(id);
         repository.deleteById(id);
     }
 
-    private void checkIfBrandExists(int id) {
+    private void checkIfBrandExistsById(int id) {
         if(!repository.existsById(id)) throw new IllegalArgumentException("Bu marka yok!");
     }
 
+    private void checkIfBrandExistsByName(String name) {
+        if (repository.existsByNameIgnoreCase(name)) {
+            throw new RuntimeException("Böyle bir marka sistemde zaten var!");
+        }
+    }
 
     /*
     private final BrandRepository repository;

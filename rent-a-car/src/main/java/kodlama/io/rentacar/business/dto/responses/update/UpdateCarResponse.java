@@ -1,18 +1,16 @@
-package kodlama.io.rentacar.business.dto.responses.get;
+package kodlama.io.rentacar.business.dto.responses.update;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class GetAllBrandsResponse {
+public class UpdateCarResponse {
     private int id;
-    private String name;
-    //private List<GetAllModelsResponse> models;
+    private int modelId;
+    private String plate;
 }

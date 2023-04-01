@@ -1,18 +1,16 @@
-package kodlama.io.rentacar.business.dto.responses.get;
+package kodlama.io.rentacar.business.dto.responses.create;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class GetAllBrandsResponse {
+public class CreateModelResponse {
     private int id;
+    private int brandId;
     private String name;
-    //private List<GetAllModelsResponse> models;
 }

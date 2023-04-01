@@ -5,14 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class GetAllBrandsResponse {
+public class GetAllModelsResponse {
     private int id;
+    private int brandId;
     private String name;
-    //private List<GetAllModelsResponse> models;
+    private String brandName;
 }
