@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
 @Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CreateCarRequest {
-    private int modelId; //"car" tablosunda oto olarak model_id olarak çevirerek tutar. Tablodaki isimleri aynı verilmeli.
+    private int modelId;
+    private int modelYear;
     private String plate;
+    private double dailyPrice;
 }

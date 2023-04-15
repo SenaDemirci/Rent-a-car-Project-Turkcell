@@ -43,8 +43,8 @@ public class ModelManager implements ModelService {
         checkIfModelExistsByName(request.getName());
         Model model = mapper.map(request, Model.class);
         model.setId(0); //0 create anlamına gelir. Yeni bir id oluşturması için 0 yaptık.
-        repository.save(model);
-        CreateModelResponse response = mapper.map(model, CreateModelResponse.class);
+        Model createdCar = repository.save(model);
+        CreateModelResponse response = mapper.map(createdCar, CreateModelResponse.class);
         return response;
     }
 
@@ -52,8 +52,8 @@ public class ModelManager implements ModelService {
     public UpdateModelResponse update(int id, UpdateModelRequest request) {
         Model model = mapper.map(request, Model.class);
         model.setId(id);
-        repository.save(model);
-        UpdateModelResponse response = mapper.map(model, UpdateModelResponse.class);
+        Model updatedModel = repository.save(model);
+        UpdateModelResponse response = mapper.map(updatedModel, UpdateModelResponse.class);
         return response;
     }
 

@@ -25,11 +25,16 @@ public class BrandManager implements BrandService {
     @Override
     public List<GetAllBrandsResponse> getAll() {
         List<Brand> brands = repository.findAll();
+        //dönüş tipi List<GetAllBrandsResponse> olduğu için brandsi dönüştürmeliyiz.
+        //elindeki listeyi (brands) tek tek dolaş. brands.stream().map() Map foreach yapar her bir elemanı yeni bir listeye atar.
+        //Javada .class demek typeof() demek. Arkada yeni bir GetAllBrandsResponse nesnesi oluşturur. (newler)
+        //oluşturulan yeni listeyi mapper.map() ile dolaşarak her bir elemanı brande aktarır. En son bunu liste haline getirir.
         List<GetAllBrandsResponse> response = brands
                 .stream()
                 .map(brand -> mapper.map(brand, GetAllBrandsResponse.class))
                 .toList();
         return response;
+
         /*
         List<Brand> brands = repository.findAll();
         List<GetAllBrandsResponse> response = new ArrayList<>(); //başta boş bir liste olarak başlasın.
@@ -76,9 +81,9 @@ public class BrandManager implements BrandService {
         checkIfBrandExistsByName(request.getName());
 
         Brand brand = mapper.map(request, Brand.class);
-        brand.setId(0); //id ye 0 yazmaz, olan id yazınca güncellemesin diye yeni id yi kendi oto oluşturur.
-        repository.save(brand);
-        CreateBrandResponse response =mapper.map(brand, CreateBrandResponse.class);
+        brand.setId(0); //() id ye 0 yazmaz, olan id yazınca güncellemesin diye yeni id yi kendi oto oluşturur.
+        Brand createdBrand = repository.save(brand); //save edilen id ile birlikte referansını günceller. Direkt repository.save(brand); de yapabiliriz.
+        CreateBrandResponse response =mapper.map(createdBrand, CreateBrandResponse.class);
         //brand'i CreateBrandResponse'a çevirir.
         return response;
         /*
@@ -103,8 +108,8 @@ public class BrandManager implements BrandService {
         checkIfBrandExistsById(id);
         Brand brand = mapper.map(request, Brand.class);
         brand.setId(id);
-        repository.save(brand);
-        UpdateBrandResponse response = mapper.map(brand, UpdateBrandResponse.class);
+        Brand updatedBrand = repository.save(brand);
+        UpdateBrandResponse response = mapper.map(updatedBrand, UpdateBrandResponse.class);
         return response; //save() nesneyi yeni oluştururken değiştirmek istenen id atanır.
     }
 

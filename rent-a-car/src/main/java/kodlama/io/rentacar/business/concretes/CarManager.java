@@ -8,6 +8,7 @@ import kodlama.io.rentacar.business.dto.responses.get.GetAllCarsResponse;
 import kodlama.io.rentacar.business.dto.responses.get.GetCarResponse;
 import kodlama.io.rentacar.business.dto.responses.update.UpdateCarResponse;
 import kodlama.io.rentacar.entities.Car;
+import kodlama.io.rentacar.entities.enums.State;
 import kodlama.io.rentacar.repository.CarRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -41,8 +42,8 @@ public class CarManager implements CarService {
         checkIfCarExistsByName(request.getPlate());
         Car car = mapper.map(request, Car.class);
         car.setId(0);
-        repository.save(car);
-        CreateCarResponse response = mapper.map(car, CreateCarResponse.class);
+        Car createdCar = repository.save(car);
+        CreateCarResponse response = mapper.map(createdCar, CreateCarResponse.class);
         return response;
     }
 
@@ -50,14 +51,22 @@ public class CarManager implements CarService {
     public UpdateCarResponse update(int id, UpdateCarRequest request) {
         Car car = mapper.map(request, Car.class);
         car.setId(0);
-        repository.save(car);
-        UpdateCarResponse response = mapper.map(car, UpdateCarResponse.class);
+        car.setState(State.AVAILABLE); //default olarak her arabanın state AVAILABLE olur.
+        Car updatedCar =repository.save(car);
+        UpdateCarResponse response = mapper.map(updatedCar, UpdateCarResponse.class);
         return response;
     }
 
     @Override
     public void delete(int id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public void changeState(int carId, State state) {
+        Car car = repository.findById(carId).orElseThrow();
+        car.setState(state);
+        repository.save(car);
     }
 
     private void checkIfCarExistsById(int id) {

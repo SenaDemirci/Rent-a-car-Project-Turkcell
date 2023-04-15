@@ -11,13 +11,19 @@
         <module name="Interfaces" />
         <module name="inheritance" />
         <module name="rent-a-car" />
+        <module name="turkcell-rent-a-car-master" />
         <module name="intro1" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="rent-a-car (1)" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="rent-a-car" options="-parameters" />
+      <module name="rent-a-car (1)" options="-parameters" />
+      <module name="turkcell-rent-a-car-master" options="-parameters" />
     </option>
   </component>
 </project>
