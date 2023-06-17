@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    config:
+      server:
+        default-label: master
+        git:
+          uri: https://github.com/SenaDemirci/Rent-a-car-config-server
+server:
+  port: 8888

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/rentacar-microservice/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/rentacar-microservice/common-package/pom.xml" />
+        <option value="$PROJECT_DIR$/rentacar-microservice/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/rentacar-microservice/discovery-server/pom.xml" />
+        <option value="$PROJECT_DIR$/rentacar-microservice/filter-service/pom.xml" />
+        <option value="$PROJECT_DIR$/rentacar-microservice/inventory-service/pom.xml" />
+        <option value="$PROJECT_DIR$/rentacar-microservice/invoice-service/pom.xml" />
+        <option value="$PROJECT_DIR$/rentacar-microservice/maintenance-service/pom.xml" />
+        <option value="$PROJECT_DIR$/rentacar-microservice/payment-service/pom.xml" />
+        <option value="$PROJECT_DIR$/rentacar-microservice/rental-service/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_19" default="true" project-jdk-name="19" project-jdk-type="JavaSDK" />
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
+</project>
